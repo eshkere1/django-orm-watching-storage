@@ -28,3 +28,5 @@ class Visit(models.Model):
                 if self.leaved_at else 'not leaved'
             )
         )
+
+
