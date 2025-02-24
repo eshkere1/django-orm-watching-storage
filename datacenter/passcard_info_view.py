@@ -2,23 +2,17 @@ from datacenter.models import Passcard
 from datacenter.models import Visit
 from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import localtime
-from datacenter.storage_information_view import get_duration, format_duration
-
-
-
-def is_visit_long(duration, minutes=60):
-    minutes = minutes * 60
-    minutes_on = duration.total_seconds()
-    if minutes_on > minutes:
-        return True
-    return False
+from datacenter.security_info_helper import get_duration, format_duration, is_visit_long
+from django.utils import timezone
+from datetime import datetime
 
 def passcard_info_view(request, passcode):
     passcard = get_object_or_404(Passcard, passcode=passcode)
     visits = Visit.objects.filter(passcard=passcard)
     this_passcard_visits = []
     for visit in visits:
-        duration = get_duration(visit)
+        date_now = localtime(datetime.now(timezone.utc))
+        duration = get_duration(visit, date_now)
         visit_time = format_duration(duration)
         entered_local_time = localtime(visit.entered_at)
         is_strange = is_visit_long(duration)
