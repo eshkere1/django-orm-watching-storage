@@ -3,14 +3,13 @@ from datacenter.models import Visit
 from django.shortcuts import render
 from django.utils.timezone import localtime
 from django.utils import timezone
-from datetime import datetime
 from datacenter.security_info_helper import get_duration, format_duration
 
 def storage_information_view(request):
     leaved_visits = Visit.objects.filter(leaved_at=None)
     non_closed_visits =[]
     for visit in leaved_visits:
-        date_now = localtime(datetime.now(timezone.utc))
+        date_now = localtime(timezone.now())
         duration = get_duration(visit, date_now)
         visit_time = format_duration(duration)
         entered_local_time = localtime(visit.entered_at)
