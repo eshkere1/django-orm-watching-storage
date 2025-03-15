@@ -5,6 +5,7 @@ from django.utils.timezone import localtime
 from django.utils import timezone
 from datacenter.security_info_helper import get_duration, format_duration
 
+
 def storage_information_view(request):
     leaved_visits = Visit.objects.filter(leaved_at=None)
     non_closed_visits =[]
