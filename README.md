@@ -4,7 +4,7 @@
 
 ## Как установить
 
-Python3 должен быть уже установлен. Если вас его нет, то следуйте рекомендациям [статьи по установке Python для Windows](https://docs.microsoft.com/ru-ru/windows/python/beginners#install-python).
+Python3.11 должен быть уже установлен. Если вас его нет, то следуйте рекомендациям [статьи по установке Python для Windows](https://docs.microsoft.com/ru-ru/windows/python/beginners#install-python).
 Затем используйте `pip` для установки зависимостей:
 ```
 pip install -r requirements.txt
